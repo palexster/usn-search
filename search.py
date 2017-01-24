@@ -24,6 +24,12 @@ def get_args():
     return package, version, os, cve
 
 
+def create_link(cve):
+    year = cve.split("-")[1]
+    url = "http://people.canonical.com/~ubuntu-security/cve/{}/{}.html".format(year, cve.upper())
+    return url
+
+
 def version_is_vulnerable(version, cve_version):
     l = []
     l.append(version)
@@ -41,16 +47,17 @@ def main():
     if os:
         data['os'] = re.compile('.*{}.*'.format(os))
     if cve:
-        data['cve'] = cve
+        data['cve'] = cve.lower()
     results = search(data)
     for result in results:
+        link = create_link(result['cve'])
         if version:  # if user provided a version
             if version_is_vulnerable(version, result['version']):  # we check if version is vulnerable for each case
-                print("{}: Package {}, fix version: {} ({})".format(result['cve'], result['package'],
-                                                                    result['version'], result['os'].title()))
+                print("{}: Package {}, fix version: {} [{}] ({})".format(result['cve'], result['package'],
+                                                                    result['version'], result['os'].title(), link))
         else:
-            print("{}: Package {}, fix version: {} ({})".format(result['cve'], result['package'],
-                                                                result['version'], result['os'].title()))
+            print("{}: Package {}, fix version: {} [{}] ({})".format(result['cve'], result['package'],
+                                                                result['version'], result['os'].title(), link))
 
 
 if __name__ == "__main__":
