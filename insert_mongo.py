@@ -16,6 +16,7 @@ def main():
     db = client.cve_ubuntu
     with open("cves.out") as file:
         for line in file:
+            line = line.rstrip('\n')
             package = line.split(";")[0]
             os = line.split(";")[1]
             version = line.split(";")[2]
