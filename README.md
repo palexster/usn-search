@@ -12,6 +12,7 @@ Given (.deb) packages, you can check if there are known vulnerabilities that aff
      * PyMongo
      * natsort
      * beautifulsoup4
+     * requests
 
 # Installation
 1. First we install the requirements:
