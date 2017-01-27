@@ -6,6 +6,12 @@ from bs4 import BeautifulSoup
 from insert_mongo import store_cve
 
 
+def verify_status(status):
+    if status == "released" or status == "ignored" or status == "not-affected" or status == "needed" or status == "ignored" or status == "needs-triage" or status == "DNE":
+        return True
+    return False
+
+
 def parse_cve_page(db, html, cve):
     soup = BeautifulSoup(html, "lxml")
     packages = soup.find_all("div", class_="pkg")
@@ -17,15 +23,16 @@ def parse_cve_page(db, html, cve):
                 if len(tr.find_all("td")[1].text.split()) >= 1:
                     ubuntu = tr.find_all("td")[0].text.partition(":")[0]
                     status = tr.find_all("td")[1].text.split()[0]
+                    priority = soup.find("div", class_="item").find_all("div")[1].text
                     if 'released' in tr.find_all("td")[1].text and len(tr.find_all("td")[1].text.split()) > 1:
                         version = tr.find_all("td")[1].text.split()[1].split("(")[1].split(")")[0]
-                        store_cve(db, package_name, ubuntu, version, cve, status)
-                    else:
-                        store_cve(db, package_name, ubuntu, "", cve, status)
+                        store_cve(db, package_name, ubuntu, version, cve, status, priority)
+                    elif verify_status(status):
+                        store_cve(db, package_name, ubuntu, "", cve, status, priority)
                 else:
-                    store_cve(db, "", "", "", cve, "")
+                    store_cve(db, "", "", "", cve, "", "")
     else:
-        store_cve(db, "", "", "", cve, "")
+        store_cve(db, "", "", "", cve, "", "")
 
 
 def export_cves():
@@ -69,10 +76,15 @@ def download_cves(db, missing):
         parse_cve_page(db, r.text, cve)
 
 
-client = MongoClient()
-db = client.cve_ubuntu
-missing = check_cve_ubuntu(db)
-if missing:
-    download_cves(db, missing)
-else:
-    print("Nothing to update.")
+def main():
+    client = MongoClient()
+    db = client.cve_ubuntu
+    missing = check_cve_ubuntu(db)
+    if missing:
+        download_cves(db, missing)
+    else:
+        print("Nothing to update.")
+
+
+if __name__ == "__main__":
+    main()
