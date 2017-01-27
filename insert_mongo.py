@@ -1,14 +1,15 @@
 from pymongo import MongoClient
 
 
-def store_cve(db, package, os, version, cve, status):
+def store_cve(db, package, os, version, cve, status, priority):
     db.cve_ubuntu.insert_one(
         {
             "package": package.lower(),
             "os": os.lower(),
             "version": version.lower(),
             "cve": cve.lower(),
-            "status": status.lower()
+            "status": status.lower(),
+            "priority": priority.lower(),
         })
 
 
@@ -23,7 +24,8 @@ def main():
             version = line.split(";")[2]
             cve = line.split(";")[3]
             status = line.split(";")[4]
-            store_cve(db, package, os, version, cve, status)
+            priority = line.split(";")[5]
+            store_cve(db, package, os, version, cve, status, priority)
 
 
 if __name__ == "__main__":
