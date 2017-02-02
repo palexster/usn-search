@@ -7,7 +7,7 @@ from insert_mongo import store_cve
 
 
 def verify_status(status):
-    if status == "released" or status == "ignored" or status == "not-affected" or status == "needed" or status == "ignored" or status == "needs-triage" or status == "DNE":
+    if status == "released" or status == "ignored" or status == "not-affected" or status == "needed" or status == "ignored" or status == "needs-triage" or status == "DNE" or status=="pending":
         return True
     return False
 
