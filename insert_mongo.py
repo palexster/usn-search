@@ -19,12 +19,12 @@ def main():
     with open("cves.out") as file:
         for line in file:
             line = line.rstrip('\n')
-            package = line.split(";")[0]
-            os = line.split(";")[1]
-            version = line.split(";")[2]
-            cve = line.split(";")[3]
-            status = line.split(";")[4]
-            priority = line.split(";")[5]
+            package = line.split('"')[1]
+            os = line.split('"')[3]
+            version = line.split('"')[5]
+            cve = line.split('"')[7]
+            status = line.split('"')[9]
+            priority = line.split('"')[11]
             store_cve(db, package, os, version, cve, status, priority)
 
 
