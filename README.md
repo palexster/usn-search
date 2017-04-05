@@ -3,7 +3,7 @@ cve-ubuntu-search is a tool to import USN (Ubuntu Security Notices) database dum
 
 Given (.deb) packages, you can check if there are known vulnerabilities that affects them.
 
-*Dump last updated: 01/21/2017, run db_update.py to update it!*
+*Dump last updated: 04/05/2017, run db_update.py to update it!*
 
 # Requirements
    * MongoDB (2.2 or above)
