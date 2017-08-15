@@ -3,7 +3,7 @@ usn-search is a tool to import USN (Ubuntu Security Notices) database dump into 
 
 Given (.deb) packages, you can check if there are known vulnerabilities that affects them.
 
-*Dump last updated: 04/05/2017, run db_update.py to update it!*
+*Dump last updated: 15/08/2017, run db_update.py to update it!*
 
 # Requirements
    * MongoDB (2.2 or above)
@@ -13,26 +13,33 @@ Given (.deb) packages, you can check if there are known vulnerabilities that aff
      * natsort
      * beautifulsoup4
      * requests
+     * lxml
 
 # Installation
-1. First we install the requirements:
+1. Git clone the repo:
 
-    ```
-    sudo pip3 install -r requirements.txt
-    ```
-2. MongoDB installation: you can get the distribution packages here: https://docs.mongodb.com/manual/installation/.
+    ```
+    $ git clone https://github.com/lukeber4/usn-search/
+    ```    
+2. First we install the requirements:
+
+    ```
+    $ sudo pip3 install -r requirements.txt
+    ```
+    
+3. MongoDB installation: you can get the distribution packages here: https://docs.mongodb.com/manual/installation/.
 If Ubuntu, here is the guide: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-3. We populate the MongoDB with Ubuntu's CVEs dump (should take 1-2 minutes aprox):
+4. Once Mongo is installed and running, we populate the MongoDB with Ubuntu's CVEs dump (should take 1-2 minutes aprox):
 
     ```
     $ python3 insert_mongo.py
     ```
-4. We update the MongoDB with the newest Ubuntu's CVEs:
+5. We update the MongoDB with the newest Ubuntu's CVEs (this should be cron daily):
 
     ```
     $ python3 db_update.py
     ```
-5. We are ready to go!
+6. We are ready to go!
 
 # Usage
 ```
@@ -57,13 +64,13 @@ optional arguments:
 
     ```
     $ python3 search.py | wc -l
-    53901
+    59010
     ```
     You can also list unclassified CVEs (with no fix version or not Ubuntu related):
     
     ```
     $ python3 search.py -a | wc -l
-    384721
+    453253
     ```
     Example:
     ```
