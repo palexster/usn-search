@@ -3,7 +3,7 @@ usn-search is a tool to import USN (Ubuntu Security Notices) database dump into 
 
 Given (.deb) packages, you can check if there are known vulnerabilities that affects them.
 
-*Dump last updated: 15/08/2017, run db_update.py to update it!*
+*Dump last updated: 22/08/2017, run db_update.py to update it!*
 
 # Requirements
    * MongoDB (2.2 or above)
@@ -46,7 +46,7 @@ If Ubuntu, here is the guide: https://docs.mongodb.com/manual/tutorial/install-m
 $ python3 search.py -h
 usage: search.py [-h] [-p PACKAGE] [-v VERSION] [-o OS] [-c CVE] [-a]
 
-CVE Ubuntu Search.
+USN Search.
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -64,13 +64,13 @@ optional arguments:
 
     ```
     $ python3 search.py | wc -l
-    59010
+    57905
     ```
     You can also list unclassified CVEs (with no fix version or not Ubuntu related):
     
     ```
     $ python3 search.py -a | wc -l
-    453253
+    454379
     ```
     Example:
     ```
