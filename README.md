@@ -21,6 +21,7 @@ Given (.deb) packages, you can check if there are known vulnerabilities that aff
     ```
     $ git clone https://github.com/lukeber4/usn-search/
     ```    
+    
 2. First we install the requirements:
 
     ```
