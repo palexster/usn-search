@@ -27,20 +27,26 @@ Given (.deb) packages, you can check if there are known vulnerabilities that aff
     ```
     $ sudo pip3 install -r requirements.txt
     ```
+
+3. We extract cves.out.gz:
+
+    ```
+    $ gzip -d cves.out.gz
+    ```
     
-3. MongoDB installation: you can get the distribution packages here: https://docs.mongodb.com/manual/installation/.
+4. MongoDB installation: you can get the distribution packages here: https://docs.mongodb.com/manual/installation/.
 If Ubuntu, here is the guide: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-4. Once Mongo is installed and running, we populate the MongoDB with Ubuntu's CVEs dump (should take 1-2 minutes aprox):
+5. Once Mongo is installed and running, we populate the MongoDB with Ubuntu's CVEs dump (should take 1-2 minutes aprox):
 
     ```
     $ python3 insert_mongo.py
     ```
-5. We update the MongoDB with the newest Ubuntu's CVEs (this should be cron daily):
+6. We update the MongoDB with the newest Ubuntu's CVEs (this should be cron daily):
 
     ```
     $ python3 db_update.py
     ```
-6. We are ready to go!
+7. We are ready to go!
 
 # Usage
 ```
