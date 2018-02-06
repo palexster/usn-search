@@ -19,7 +19,7 @@ Given (.deb) packages, you can check if there are known vulnerabilities that aff
 1. Git clone the repo:
 
     ```
-    $ git clone https://github.com/lukeber4/usn-search/
+    $ git clone https://github.com/lukeber4/usn-search/ && cd usn-search/
     ```    
     
 2. First we install the requirements:
@@ -36,7 +36,7 @@ Given (.deb) packages, you can check if there are known vulnerabilities that aff
     
 4. MongoDB installation: you can get the distribution packages here: https://docs.mongodb.com/manual/installation/.
 If Ubuntu, here is the guide: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-5. Once Mongo is installed and running, we populate the MongoDB with Ubuntu's CVEs dump (should take 1-2 minutes aprox):
+5. Once Mongo is installed and running, we populate the MongoDB with Ubuntu's CVEs dump (should take 4-5 minutes aprox):
 
     ```
     $ python3 insert_mongo.py
