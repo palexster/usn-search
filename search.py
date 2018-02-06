@@ -17,7 +17,7 @@ def search(data):
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description='CVE Ubuntu Search.')
+    parser = argparse.ArgumentParser(description='USN Search.')
     parser.add_argument('-p', '--package', help='package --> e.g: -p php5')
     parser.add_argument('-v', '--version', help='package version (optional) --> e.g: -p php5 -v 5.2.1')
     parser.add_argument('-o', '--os', help='OS or upstream -->  e.g: -o 14.04')
