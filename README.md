@@ -65,13 +65,13 @@ optional arguments:
 
     ```
     $ python3 search.py | wc -l
-    57905
+    122872
     ```
     You can also list unclassified CVEs (with no fix version or not Ubuntu related):
     
     ```
     $ python3 search.py -a | wc -l
-    454379
+    960894
     ```
     Example:
     ```
